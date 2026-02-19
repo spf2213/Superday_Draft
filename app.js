@@ -347,6 +347,7 @@ function prevNav(view, el) {
 
 /* ── Question Bank filter ── */
 function pvBankFilter(el, cat) {
+  if (!el) return;
   document.querySelectorAll('#pv-bank-list .pv-q-item').forEach(row => {
     row.style.display = (cat === 'all' || row.dataset.cat === cat) ? 'flex' : 'none';
   });
@@ -356,8 +357,10 @@ function pvBankFilter(el, cat) {
 
 /* ── Question Bank expand/collapse ── */
 function pvToggleQ(row) {
+  if (!row) return;
   const ans   = row.querySelector('.pv-ans');
   const caret = row.querySelector('.pv-caret');
+  if (!ans || !caret) return;
   const open  = ans.style.display !== 'none';
   // close all
   document.querySelectorAll('#pv-bank-list .pv-q-item').forEach(r => {
@@ -669,10 +672,10 @@ async function doLogin() {
   const msg = document.getElementById('login-msg');
   if (msg) { msg.className = 'auth-msg'; msg.textContent = ''; }
   if (!email || !password) { if (msg) showMsg(msg, 'error', 'Please fill in all fields.'); return; }
-  btn.disabled = true; btn.textContent = 'Logging in…';
+  if (btn) { btn.disabled = true; btn.textContent = 'Logging in…'; }
   const { data, error } = await sb.auth.signInWithPassword({ email, password });
-  btn.disabled = false; btn.textContent = 'Log in →';
-  if (error) { showMsg(msg, 'error', error.message); return; }
+  if (btn) { btn.disabled = false; btn.textContent = 'Log in →'; }
+  if (error) { if (msg) showMsg(msg, 'error', error.message); return; }
   await onSignedIn(data.user);
 }
 
@@ -687,16 +690,16 @@ async function doSignup() {
   const msg = document.getElementById('signup-msg');
   if (msg) { msg.className = 'auth-msg'; msg.textContent = ''; }
   if (!name || !email || !password) { if (msg) showMsg(msg, 'error', 'Please fill in all fields.'); return; }
-  if (password.length < 8) { showMsg(msg, 'error', 'Password must be at least 8 characters.'); return; }
-  btn.disabled = true; btn.textContent = 'Creating account…';
+  if (password.length < 8) { if (msg) showMsg(msg, 'error', 'Password must be at least 8 characters.'); return; }
+  if (btn) { btn.disabled = true; btn.textContent = 'Creating account…'; }
   const { data, error } = await sb.auth.signUp({
     email, password,
     options: { data: { full_name: name } }
   });
-  btn.disabled = false; btn.textContent = 'Create account →';
-  if (error) { showMsg(msg, 'error', error.message); return; }
+  if (btn) { btn.disabled = false; btn.textContent = 'Create account →'; }
+  if (error) { if (msg) showMsg(msg, 'error', error.message); return; }
   if (data.user && !data.session) {
-    showMsg(msg, 'success', 'Check your email to confirm your account, then log in.');
+    if (msg) showMsg(msg, 'success', 'Check your email to confirm your account, then log in.');
     return;
   }
   await onSignedIn(data.user);
@@ -705,11 +708,26 @@ async function doSignup() {
 async function doSignOut() {
   await sb.auth.signOut();
   currentUser = null;
-  progress = { answered: new Set(), activityLog: [] };
+  progress = {
+    answered: new Set(),
+    activityLog: [],
+    mastery: {},
+    diagnosticDone: false,
+    userBand: 'intermediate',
+    diagnosticScores: null,
+    onrampComplete: false,
+    userProfile: null,
+    notes: [],
+    questionNotes: {},
+    completedTasks: [],
+    learnProgress: {},
+    completedCases: []
+  };
   showScreen('landing');
 }
 
 function showMsg(el, type, text) {
+  if (!el) return;
   el.className = 'auth-msg ' + type;
   el.textContent = text;
 }
@@ -819,7 +837,7 @@ function ctaSignup() {
   showAuthTab('signup');
 }
 
-function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function capitalize(s) { return (s && typeof s === 'string') ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
 
 /* ─── VIEWS ──────────────────────────── */
 function showView(id) {
@@ -1203,6 +1221,7 @@ function renderQRow(q, i) {
 
 function toggleQ(id) {
   const el = document.getElementById('qr-'+id);
+  if (!el) return;
   el.classList.toggle('open');
   if (el.classList.contains('open')) markAnswered(id);
 }
@@ -3376,45 +3395,55 @@ function renderProfile() {
 function toggleProfileEdit(section) {
   profileEditing[section] = !profileEditing[section];
   if (section === 'info') {
-    const nameInput = document.getElementById('profile-name');
-    const emailInput = document.getElementById('profile-email');
-    const actions = document.getElementById('profile-actions-info');
-    const btn = document.getElementById('profile-edit-info-btn');
-    if (profileEditing.info && nameInput && emailInput && actions && btn) {
-      nameInput.disabled = false;
-      emailInput.disabled = false;
-      actions.style.display = 'flex';
-      btn.textContent = 'Cancel';
-      nameInput.focus();
-    } else if (!profileEditing.info) {
+    if (!profileEditing.info) {
       renderProfile();
+    } else {
+      const nameInput = document.getElementById('profile-name');
+      const emailInput = document.getElementById('profile-email');
+      const actions = document.getElementById('profile-actions-info');
+      const btn = document.getElementById('profile-edit-info-btn');
+      if (nameInput && emailInput && actions && btn) {
+        nameInput.disabled = false;
+        emailInput.disabled = false;
+        actions.style.display = 'flex';
+        btn.textContent = 'Cancel';
+        nameInput.focus();
+      } else {
+        profileEditing.info = false;
+      }
     }
     clearProfileMsg('info');
   } else if (section === 'pw') {
-    const formPw = document.getElementById('profile-form-pw');
-    const actions = document.getElementById('profile-actions-pw');
-    const placeholder = document.getElementById('profile-pw-placeholder');
-    const btn = document.getElementById('profile-edit-pw-btn');
-    const pwNew = document.getElementById('profile-pw-new');
-    const pwConfirm = document.getElementById('profile-pw-confirm');
-    if (profileEditing.pw && formPw && actions && placeholder && btn) {
-      formPw.style.display = 'flex';
-      actions.style.display = 'flex';
-      placeholder.style.display = 'none';
-      btn.textContent = 'Cancel';
-      if (pwNew) pwNew.value = '';
-      if (pwConfirm) pwConfirm.value = '';
-      if (pwNew) pwNew.focus();
-    } else if (!profileEditing.pw) {
+    if (!profileEditing.pw) {
       renderProfile();
+    } else {
+      const formPw = document.getElementById('profile-form-pw');
+      const actions = document.getElementById('profile-actions-pw');
+      const placeholder = document.getElementById('profile-pw-placeholder');
+      const btn = document.getElementById('profile-edit-pw-btn');
+      const pwNew = document.getElementById('profile-pw-new');
+      const pwConfirm = document.getElementById('profile-pw-confirm');
+      if (formPw && actions && placeholder && btn) {
+        formPw.style.display = 'flex';
+        actions.style.display = 'flex';
+        placeholder.style.display = 'none';
+        btn.textContent = 'Cancel';
+        if (pwNew) pwNew.value = '';
+        if (pwConfirm) pwConfirm.value = '';
+        if (pwNew) pwNew.focus();
+      } else {
+        profileEditing.pw = false;
+      }
     }
     clearProfileMsg('pw');
   }
 }
 
 async function saveProfileInfo() {
-  const nameVal = document.getElementById('profile-name').value.trim();
-  const emailVal = document.getElementById('profile-email').value.trim();
+  const nameEl = document.getElementById('profile-name');
+  const emailEl = document.getElementById('profile-email');
+  const nameVal = nameEl ? nameEl.value.trim() : '';
+  const emailVal = emailEl ? emailEl.value.trim() : '';
   const msgEl = document.getElementById('profile-msg-info');
 
   if (!nameVal) { showProfileMsg('info', 'error', 'Name cannot be empty.'); return; }
@@ -3445,8 +3474,10 @@ async function saveProfileInfo() {
 }
 
 async function saveProfilePassword() {
-  const pw = document.getElementById('profile-pw-new').value;
-  const confirm = document.getElementById('profile-pw-confirm').value;
+  const pwEl = document.getElementById('profile-pw-new');
+  const confirmEl = document.getElementById('profile-pw-confirm');
+  const pw = pwEl ? pwEl.value : '';
+  const confirm = confirmEl ? confirmEl.value : '';
 
   if (!pw || pw.length < 6) { showProfileMsg('pw', 'error', 'Password must be at least 6 characters.'); return; }
   if (pw !== confirm) { showProfileMsg('pw', 'error', 'Passwords do not match.'); return; }
