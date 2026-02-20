@@ -126,19 +126,19 @@
             Superday
           </div>
           <div class="ps-item ps-active" id="pnav-dashboard" onclick="prevNav('dashboard',this)">
-            <span class="ps-icon">◈</span>Dashboard
+            <span class="ps-icon">◇</span>Dashboard
           </div>
           <div class="ps-section">Learn</div>
           <div class="ps-item" id="pnav-bank" onclick="prevNav('bank',this)">
-            <span class="ps-icon">📖</span>Concepts
+            <span class="ps-icon">□</span>Concepts
           </div>
           <div class="ps-section">Practice</div>
           <div class="ps-item" id="pnav-flash" onclick="prevNav('flash',this)">
-            <span class="ps-icon">⧉</span>Flashcards
+            <span class="ps-icon">⬡</span>Flashcards
           </div>
           <div class="ps-section">Test</div>
           <div class="ps-item" id="pnav-mock" onclick="prevNav('mock',this)">
-            <span class="ps-icon">✓</span>Quiz Mode
+            <span class="ps-icon">◇</span>Quiz Mode
           </div>
         </div>
 
@@ -798,19 +798,19 @@
   <aside class="app-sidebar">
     <div class="sb-top">
       <div class="sb-brand"><div class="logo-mark" style="width:20px;height:20px;border-radius:5px;font-size:10px">S</div>Superday</div>
-      <div class="sb-item active" onclick="showView('dashboard')"><span class="sb-icon">◈</span>Dashboard</div>
+      <div class="sb-item active" onclick="showView('dashboard')"><span class="sb-icon">◇</span>Dashboard</div>
       <div class="sb-section">Learn</div>
-      <div class="sb-item" onclick="showView('learn')"><span class="sb-icon">📖</span>Concepts</div>
-      <div class="sb-item" onclick="showView('map')"><span class="sb-icon">◉</span>Knowledge Map</div>
-      <div class="sb-item" onclick="showView('bank')"><span class="sb-icon">☰</span>Question Bank</div>
+      <div class="sb-item" onclick="showView('learn')"><span class="sb-icon">□</span>Concepts</div>
+      <div class="sb-item" onclick="showView('map')"><span class="sb-icon">○</span>Knowledge Map</div>
+      <div class="sb-item" onclick="showView('bank')"><span class="sb-icon">≡</span>Question Bank</div>
       <div class="sb-section">Practice</div>
-      <div class="sb-item" onclick="showView('cases')"><span class="sb-icon">🧮</span>Mini-Cases</div>
-      <div class="sb-item" onclick="showView('quiz')"><span class="sb-icon">✓</span>Quiz Mode</div>
-      <div class="sb-item" onclick="showView('flash')"><span class="sb-icon">⧉</span>Flashcards</div>
+      <div class="sb-item" onclick="showView('cases')"><span class="sb-icon">△</span>Mini-Cases</div>
+      <div class="sb-item" onclick="showView('quiz')"><span class="sb-icon">◇</span>Quiz Mode</div>
+      <div class="sb-item" onclick="showView('flash')"><span class="sb-icon">⬡</span>Flashcards</div>
       <div class="sb-section">Test</div>
       <div class="sb-item" onclick="showView('mock')"><span class="sb-icon">◎</span>Mock Interview</div>
       <div class="sb-section">Apply</div>
-      <div class="sb-item" onclick="showView('apply')"><span class="sb-icon">⊞</span>Internship Tracker</div>
+      <div class="sb-item" onclick="showView('apply')"><span class="sb-icon">→</span>Internship Tracker</div>
     </div>
     <div class="sb-spacer"></div>
     <div class="sb-bottom">
@@ -851,7 +851,7 @@
         </div>
         <div class="dash-hero-right">
           <div class="dash-hero-streak" id="dash-hero-streak">
-            <span class="streak-flame">🔥</span>
+            <span class="streak-flame">●</span>
             <span class="streak-num" id="hero-streak-num">0</span>
             <span class="streak-label">day streak</span>
           </div>
@@ -867,7 +867,7 @@
 
       <!-- PRIMARY CTA -->
       <button class="dash-primary-cta" id="dash-practice-btn" onclick="smartPractice()">
-        <span class="cta-icon">▶</span>
+        <span class="cta-icon">→</span>
         <span id="practice-btn-text">Continue Learning</span>
         <span class="cta-arrow">→</span>
       </button>
@@ -1064,13 +1064,13 @@
             <span class="mode-icon">📚</span>All Cards<span class="mode-count" id="mode-count-all">120/span>
           </button>
           <button class="mode-btn" data-mode="due" onclick="setStudyMode('due')">
-            <span class="mode-icon">🔄</span>Due for Review<span class="mode-count" id="mode-count-due">0</span>
+            <span class="mode-icon">○</span>Due for Review<span class="mode-count" id="mode-count-due">0</span>
           </button>
           <button class="mode-btn" data-mode="weak" onclick="setStudyMode('weak')">
-            <span class="mode-icon">🎯</span>Weak Spots<span class="mode-count" id="mode-count-weak">0</span>
+            <span class="mode-icon">◇</span>Weak Spots<span class="mode-count" id="mode-count-weak">0</span>
           </button>
           <button class="mode-btn" data-mode="quick" onclick="setStudyMode('quick')">
-            <span class="mode-icon">⚡</span>Quick 10
+            <span class="mode-icon">›</span>Quick 10
           </button>
         </div>
 
@@ -1525,19 +1525,19 @@
         <div class="onramp-desc">We'll customize your learning path based on your experience level.</div>
         <div class="onramp-options">
           <div class="onramp-option" onclick="selectOnramp(this, 'background', 'finance')">
-            <span class="onramp-option-icon">📊</span>
+            <span class="onramp-option-icon">◆</span>
             <span class="onramp-option-text">Finance / Accounting major</span>
           </div>
           <div class="onramp-option" onclick="selectOnramp(this, 'background', 'econ')">
-            <span class="onramp-option-icon">📈</span>
+            <span class="onramp-option-icon">◇</span>
             <span class="onramp-option-text">Economics / Business major</span>
           </div>
           <div class="onramp-option" onclick="selectOnramp(this, 'background', 'stem')">
-            <span class="onramp-option-icon">🔬</span>
+            <span class="onramp-option-icon">○</span>
             <span class="onramp-option-text">STEM major (Engineering, CS, Math)</span>
           </div>
           <div class="onramp-option" onclick="selectOnramp(this, 'background', 'other')">
-            <span class="onramp-option-icon">📚</span>
+            <span class="onramp-option-icon">□</span>
             <span class="onramp-option-text">Liberal Arts / Other</span>
           </div>
         </div>
@@ -1550,20 +1550,20 @@
     <!-- Step 2: Timeline -->
     <div class="onramp-step" id="onramp-step-2">
       <div class="onramp-card">
-        <div class="onramp-icon">⏰</div>
+        <div class="onramp-icon">◎</div>
         <div class="onramp-title">When's your interview?</div>
         <div class="onramp-desc">We'll prioritize the highest-yield topics based on your timeline.</div>
         <div class="onramp-options">
           <div class="onramp-option" onclick="selectOnramp(this, 'timeline', '2weeks')">
-            <span class="onramp-option-icon">🔥</span>
+            <span class="onramp-option-icon">●</span>
             <span class="onramp-option-text">Within 2 weeks — Crunch mode</span>
           </div>
           <div class="onramp-option" onclick="selectOnramp(this, 'timeline', '1month')">
-            <span class="onramp-option-icon">📅</span>
+            <span class="onramp-option-icon">◐</span>
             <span class="onramp-option-text">About 1 month out</span>
           </div>
           <div class="onramp-option" onclick="selectOnramp(this, 'timeline', '3months')">
-            <span class="onramp-option-icon">🌱</span>
+            <span class="onramp-option-icon">○</span>
             <span class="onramp-option-text">3+ months — Building foundations</span>
           </div>
           <div class="onramp-option" onclick="selectOnramp(this, 'timeline', 'exploring')">
@@ -1629,7 +1629,7 @@
     <!-- Welcome Screen -->
     <div id="diagnostic-welcome">
       <div class="diagnostic-header">
-        <div class="diagnostic-icon">🎯</div>
+        <div class="diagnostic-icon">◎</div>
         <div class="diagnostic-title">Let's calibrate your prep</div>
         <div class="diagnostic-sub">Answer 10 quick questions so we can personalize your experience and focus on what you need most.</div>
       </div>
@@ -1661,7 +1661,7 @@
     <!-- Results -->
     <div id="diagnostic-results" style="display:none">
       <div class="diagnostic-header">
-        <div class="diagnostic-icon">✨</div>
+        <div class="diagnostic-icon">◇</div>
         <div class="diagnostic-title">Assessment Complete</div>
       </div>
       <div class="diagnostic-card">

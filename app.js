@@ -576,7 +576,7 @@ function demoFCRender() {
   const labelEl = document.getElementById('demo-fc-label');
   const progEl = document.getElementById('demo-fc-prog');
   if (aEl) aEl.textContent = c.a;
-  if (tipEl) tipEl.textContent = '💡 ' + c.tip;
+  if (tipEl) tipEl.textContent = c.tip;
   const pct = Math.round((demoFCIndex / DEMO_CARDS.length) * 100);
   if (labelEl) labelEl.textContent = c.cat.split('—')[1]?.trim().toUpperCase() + ' · Card ' + (demoFCIndex+1) + ' of ' + DEMO_CARDS.length;
   if (progEl) progEl.textContent = pct + '% complete';
@@ -1112,20 +1112,20 @@ function renderAnalytics() {
 
 /* ─── GAMIFICATION ──────────────────── */
 const BADGES = [
-  { id:'first-10', title:'Getting Started', desc:'Answer 10 questions', icon:'🌱', check:()=>progress.answered.size>=10 },
-  { id:'first-50', title:'Committed', desc:'Answer 50 questions', icon:'📚', check:()=>progress.answered.size>=50 },
-  { id:'first-100', title:'Century', desc:'Answer 100 questions', icon:'💯', check:()=>progress.answered.size>=100 },
-  { id:'all-250', title:'Completionist', desc:'Answer all 250 questions', icon:'👑', check:()=>progress.answered.size>=250 },
-  { id:'streak-3', title:'On a Roll', desc:'3-day streak', icon:'✨', check:()=>calculateStreak()>=3 },
-  { id:'streak-7', title:'Week Warrior', desc:'7-day streak', icon:'⚡', check:()=>calculateStreak()>=7 },
-  { id:'streak-30', title:'Monthly Master', desc:'30-day streak', icon:'🏆', check:()=>calculateStreak()>=30 },
-  { id:'acc-master', title:'Accounting Pro', desc:'Master all accounting questions', icon:'📊', check:()=>QUESTIONS.filter(q=>q.sub==='accounting').every(q=>getMasteryClass(q.id)==='mastered') },
-  { id:'val-master', title:'Valuation Expert', desc:'Master all valuation questions', icon:'💰', check:()=>QUESTIONS.filter(q=>q.sub==='valuation').every(q=>getMasteryClass(q.id)==='mastered') },
-  { id:'lbo-master', title:'LBO Specialist', desc:'Master all LBO questions', icon:'🏦', check:()=>QUESTIONS.filter(q=>q.sub==='lbo').every(q=>getMasteryClass(q.id)==='mastered') },
-  { id:'ma-master', title:'M&A Guru', desc:'Master all M&A questions', icon:'🔄', check:()=>QUESTIONS.filter(q=>q.sub==='ma').every(q=>getMasteryClass(q.id)==='mastered') },
-  { id:'perfect-quiz', title:'Perfect Score', desc:'100% on a 10+ question quiz', icon:'🎯', check:()=>progress._perfectQuiz },
-  { id:'all-cats', title:'Well-Rounded', desc:'Practice all 4 categories', icon:'🌐', check:()=>['tech','beh','brain','deal'].every(c=>QUESTIONS.filter(q=>q.cat===c).some(q=>progress.answered.has(q.id))) },
-  { id:'concepts-5', title:'Scholar', desc:'Complete 5 concept modules', icon:'📖', check:()=>{ const lp=progress.learnProgress||{}; return Object.keys(lp).filter(k=>{const mod=LEARN_MODULES.find(m=>m.id===k);return mod&&mod.content&&lp[k]>=mod.content.length;}).length>=5; } }
+  { id:'first-10', title:'Getting Started', desc:'Answer 10 questions', icon:'○', check:()=>progress.answered.size>=10 },
+  { id:'first-50', title:'Committed', desc:'Answer 50 questions', icon:'◐', check:()=>progress.answered.size>=50 },
+  { id:'first-100', title:'Century', desc:'Answer 100 questions', icon:'●', check:()=>progress.answered.size>=100 },
+  { id:'all-250', title:'Completionist', desc:'Answer all 250 questions', icon:'◆', check:()=>progress.answered.size>=250 },
+  { id:'streak-3', title:'On a Roll', desc:'3-day streak', icon:'△', check:()=>calculateStreak()>=3 },
+  { id:'streak-7', title:'Week Warrior', desc:'7-day streak', icon:'▲', check:()=>calculateStreak()>=7 },
+  { id:'streak-30', title:'Monthly Master', desc:'30-day streak', icon:'◈', check:()=>calculateStreak()>=30 },
+  { id:'acc-master', title:'Accounting Pro', desc:'Master all accounting questions', icon:'□', check:()=>QUESTIONS.filter(q=>q.sub==='accounting').every(q=>getMasteryClass(q.id)==='mastered') },
+  { id:'val-master', title:'Valuation Expert', desc:'Master all valuation questions', icon:'◇', check:()=>QUESTIONS.filter(q=>q.sub==='valuation').every(q=>getMasteryClass(q.id)==='mastered') },
+  { id:'lbo-master', title:'LBO Specialist', desc:'Master all LBO questions', icon:'⬡', check:()=>QUESTIONS.filter(q=>q.sub==='lbo').every(q=>getMasteryClass(q.id)==='mastered') },
+  { id:'ma-master', title:'M&A Guru', desc:'Master all M&A questions', icon:'◎', check:()=>QUESTIONS.filter(q=>q.sub==='ma').every(q=>getMasteryClass(q.id)==='mastered') },
+  { id:'perfect-quiz', title:'Perfect Score', desc:'100% on a 10+ question quiz', icon:'◉', check:()=>progress._perfectQuiz },
+  { id:'all-cats', title:'Well-Rounded', desc:'Practice all 4 categories', icon:'⬢', check:()=>['tech','beh','brain','deal'].every(c=>QUESTIONS.filter(q=>q.cat===c).some(q=>progress.answered.has(q.id))) },
+  { id:'concepts-5', title:'Scholar', desc:'Complete 5 concept modules', icon:'▣', check:()=>{ const lp=progress.learnProgress||{}; return Object.keys(lp).filter(k=>{const mod=LEARN_MODULES.find(m=>m.id===k);return mod&&mod.content&&lp[k]>=mod.content.length;}).length>=5; } }
 ];
 
 function checkBadges() {
@@ -1186,7 +1186,7 @@ function recordDailyActivity() {
     const streak = calculateStreak();
     const milestones = [3, 7, 14, 30];
     milestones.forEach(m => {
-      if (streak === m) showToast(streak + '-day streak! Keep going!', streak >= 30 ? '🏆' : streak >= 14 ? '🔥' : streak >= 7 ? '⚡' : '✨', 4000);
+      if (streak === m) showToast(streak + '-day streak! Keep going!', '●', 4000);
     });
   }
 }
@@ -1248,7 +1248,7 @@ function updateDailyGoal() {
   if (heroText) heroText.textContent = todayCount + '/' + goal;
 
   if (todayCount >= goal && !sessionStorage.getItem('goal_celebrated_' + today)) {
-    showToast('Daily goal reached! Well done.', '🎯', 4000);
+    showToast('Daily goal reached! Well done.', '◉', 4000);
     sessionStorage.setItem('goal_celebrated_' + today, '1');
   }
 }
@@ -1323,7 +1323,7 @@ function renderDashPipeline() {
   
   el.innerHTML = `
     <div class="pipeline-header">
-      <span class="pipeline-title">⊞ Application Pipeline <span class="pipeline-badge" style="background:var(--accent-dim);color:var(--accent)">SUMMER 2027</span></span>
+      <span class="pipeline-title">Application Pipeline <span class="pipeline-badge" style="background:var(--accent-dim);color:var(--accent)">SUMMER 2027</span></span>
       <span class="dp-action" onclick="showView('apply')">Full tracker →</span>
     </div>
     <div class="pipeline-summary">
@@ -1368,11 +1368,11 @@ function renderActivity() {
     el.innerHTML = '<div style="padding:32px 16px;text-align:center;font-size:12.5px;color:var(--t-3)">No activity yet — start practicing.</div>';
     return;
   }
-  const icons = { tech:'📊', beh:'💬', brain:'🧠', deal:'📈' };
+  const icons = { tech:'□', beh:'○', brain:'△', deal:'◇' };
   const colors = { tech:'var(--accent-dim)', beh:'var(--green-dim)', brain:'var(--amber-dim)', deal:'var(--blue-dim)' };
   el.innerHTML = progress.activityLog.slice(0, 3).map(a =>
     '<div class="act-item">' +
-    '<div class="act-icon" style="background:' + (colors[a.cat]||'var(--bg-3)') + '">' + (icons[a.cat]||'📋') + '</div>' +
+    '<div class="act-icon" style="background:' + (colors[a.cat]||'var(--bg-3)') + '">' + (icons[a.cat]||'◇') + '</div>' +
     '<div class="act-text">' + (a.title.length > 55 ? a.title.slice(0,55)+'…' : a.title) + '</div>' +
     '<div class="act-time">' + a.time + '</div></div>'
   ).join('');
@@ -2941,7 +2941,7 @@ function renderPrepPlan() {
     <div class="prep-plan-card">
       <div class="prep-plan-header">
         <div class="prep-plan-title">
-          📋 Your Prep Plan
+          Your Prep Plan
           <span class="prep-plan-badge">${timelineLabels[timeline] || '1 MONTH'}</span>
         </div>
         <span class="prep-plan-edit" onclick="showOnramp()">Edit plan</span>
@@ -3013,7 +3013,7 @@ const LEARN_MODULES = [
   {
     id: 'three-statements',
     title: 'The Three Financial Statements',
-    icon: '📊',
+    icon: '□',
     desc: 'Master how the Income Statement, Balance Sheet, and Cash Flow Statement connect.',
     time: '15 min',
     sections: 3,
@@ -3021,7 +3021,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'Why This Matters',
-        icon: '🎯',
+        icon: '◇',
         text: 'The three-statement linkage is the single most important concept in finance interviews. If you can\'t explain how $10 of depreciation flows through all three statements, you won\'t pass a technical round.',
         visual: {
           title: 'THE THREE STATEMENTS',
@@ -3035,7 +3035,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'The Linkages',
-        icon: '🔗',
+        icon: '—',
         text: 'Net Income from the Income Statement flows into Retained Earnings on the Balance Sheet. It\'s also the starting point of the Cash Flow Statement. The ending cash balance from the CFS becomes Cash on the Balance Sheet.',
         formula: 'Net Income → Retained Earnings (BS) → Starting point of CFS → Ending Cash → Cash on BS',
         tip: {
@@ -3045,7 +3045,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'The Classic Test Question',
-        icon: '⚡',
+        icon: '›',
         text: 'How does a $10 increase in Depreciation affect all three statements? This question appears in 90% of IB interviews.',
         formula: 'IS: Pre-tax ↓$10, Tax ↓$3.50, Net Income ↓$6.50\nCFS: NI ↓$6.50 + D&A add-back +$10 = OCF ↑$3.50\nBS: PP&E ↓$10, Cash ↑$3.50, RE ↓$6.50',
         trap: {
@@ -3058,7 +3058,7 @@ const LEARN_MODULES = [
   {
     id: 'dcf-basics',
     title: 'DCF Fundamentals',
-    icon: '💰',
+    icon: '◇',
     desc: 'Understand intrinsic valuation from first principles. Why we discount, what WACC means.',
     time: '20 min',
     sections: 4,
@@ -3066,7 +3066,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'The Core Idea',
-        icon: '💡',
+        icon: '○',
         text: 'A DCF answers one question: What is a company worth based on the cash it will generate in the future? We project Free Cash Flows, then discount them back to today\'s value using a discount rate (WACC).',
         formula: 'Enterprise Value = Σ (FCF / (1 + WACC)^n) + Terminal Value',
         tip: {
@@ -3076,7 +3076,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Unlevered Free Cash Flow',
-        icon: '📈',
+        icon: '△',
         text: 'We use Unlevered FCF (also called Free Cash Flow to Firm) because it represents cash available to ALL investors — both debt and equity holders.',
         formula: 'UFCF = EBIT × (1 - Tax Rate) + D&A - CapEx - Δ NWC',
         trap: {
@@ -3086,7 +3086,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'WACC Explained',
-        icon: '⚖️',
+        icon: '◎',
         text: 'WACC (Weighted Average Cost of Capital) blends the cost of equity and cost of debt, weighted by their proportions in the capital structure.',
         formula: 'WACC = (E/V) × Re + (D/V) × Rd × (1 - Tax)',
         tip: {
@@ -3109,7 +3109,7 @@ const LEARN_MODULES = [
   {
     id: 'ev-equity',
     title: 'Enterprise Value vs. Equity Value',
-    icon: '🏢',
+    icon: '▽',
     desc: 'The difference every interviewer will test you on. When to use which.',
     time: '12 min',
     sections: 3,
@@ -3117,7 +3117,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'The Key Difference',
-        icon: '🔑',
+        icon: '·',
         text: 'Equity Value is what shareholders own. Enterprise Value is the total value of the business operations — what it would cost to buy the whole company and pay off its debts.',
         formula: 'Enterprise Value = Equity Value + Debt - Cash + Preferred + Minority Interest',
         tip: {
@@ -3127,7 +3127,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Which Multiple, Which Value?',
-        icon: '📊',
+        icon: '□',
         text: 'Match the numerator to the denominator. EV multiples use metrics available to ALL investors. Equity multiples use metrics for shareholders only.',
         visual: {
           title: 'MATCHING RULE',
@@ -3142,7 +3142,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'The Bridge',
-        icon: '🌉',
+        icon: '—',
         text: 'Moving between EV and Equity Value is critical for M&A analysis and LBO modeling.',
         formula: 'Equity Value = Enterprise Value - Debt + Cash - Preferred - Minority Interest',
         tip: {
@@ -3155,7 +3155,7 @@ const LEARN_MODULES = [
   {
     id: 'lbo-mechanics',
     title: 'LBO Model Mechanics',
-    icon: '🏦',
+    icon: '⬡',
     desc: 'How PE firms use debt to amplify returns. The math behind leveraged buyouts.',
     time: '25 min',
     sections: 4,
@@ -3163,7 +3163,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'What is an LBO?',
-        icon: '🎯',
+        icon: '◇',
         text: 'A Leveraged Buyout is when a PE firm acquires a company using mostly debt (60-80%), operates it for 3-7 years, then sells it for a profit. The "leverage" amplifies returns.',
         tip: {
           title: 'Real-World Analogy',
@@ -3172,7 +3172,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Sources & Uses',
-        icon: '💵',
+        icon: '◇',
         text: 'Every LBO starts with a Sources & Uses table. Sources = where the money comes from. Uses = where it goes.',
         visual: {
           title: 'SOURCES = USES',
@@ -3183,7 +3183,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Value Creation Levers',
-        icon: '⚡',
+        icon: '›',
         text: 'PE firms create value through three main levers: paying down debt, growing EBITDA, and multiple expansion.',
         formula: 'IRR Drivers: (1) Debt Paydown (2) EBITDA Growth (3) Multiple Expansion',
         trap: {
@@ -3193,7 +3193,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'IRR Calculation',
-        icon: '📈',
+        icon: '△',
         text: 'PE firms target 20-25%+ IRR. The formula relates initial equity investment to exit proceeds.',
         formula: 'IRR ≈ (Exit Equity / Entry Equity)^(1/Years) - 1',
         tip: {
@@ -3206,7 +3206,7 @@ const LEARN_MODULES = [
   {
     id: 'accretion-dilution',
     title: 'Accretion / Dilution',
-    icon: '🔄',
+    icon: '◎',
     desc: 'Will an acquisition increase or decrease EPS? The M&A math you must know.',
     time: '15 min',
     sections: 3,
@@ -3214,7 +3214,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'What is Accretion / Dilution?',
-        icon: '🎯',
+        icon: '◇',
         text: 'An accretion/dilution analysis determines whether a proposed acquisition will increase (accrete) or decrease (dilute) the acquirer\'s Earnings Per Share (EPS). If pro forma EPS > acquirer\'s standalone EPS, the deal is accretive. If lower, it\'s dilutive. This is one of the first things a board asks about any deal.',
         visual: {
           title: 'ACCRETIVE vs. DILUTIVE',
@@ -3229,7 +3229,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'The Math Step by Step',
-        icon: '🔢',
+        icon: '≡',
         text: 'Step 1: Calculate combined Net Income (acquirer NI + target NI + synergies - new interest expense if debt-financed - any incremental D&A from write-ups). Step 2: Calculate new shares outstanding (acquirer shares + any new shares issued to target shareholders). Step 3: Pro Forma EPS = Combined NI / New Shares. Step 4: Compare to acquirer\'s standalone EPS.',
         formula: 'Pro Forma EPS = (Acquirer NI + Target NI + Synergies - Financing Costs) / (Acquirer Shares + New Shares Issued)',
         trap: {
@@ -3239,7 +3239,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Advanced Considerations',
-        icon: '⚡',
+        icon: '›',
         text: 'Real-world accretion/dilution analysis is more nuanced. You must account for: (1) the mix of cash vs. stock consideration, (2) synergies and their phase-in timeline, (3) transaction costs and fees, (4) goodwill creation and any asset write-ups that create incremental D&A, and (5) the forgone interest income on cash used. A deal can be dilutive in Year 1 but accretive by Year 3 once synergies are realized.',
         tip: {
           title: 'Interview Delivery',
@@ -3251,7 +3251,7 @@ const LEARN_MODULES = [
   {
     id: 'working-capital',
     title: 'Working Capital Deep Dive',
-    icon: '💵',
+    icon: '△',
     desc: 'AR, AP, Inventory — how they affect cash flow and why bankers obsess over NWC.',
     time: '12 min',
     sections: 3,
@@ -3259,7 +3259,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'Components of NWC',
-        icon: '🧩',
+        icon: '◈',
         text: 'Net Working Capital (NWC) = Current Assets minus Current Liabilities. The main components are Accounts Receivable (money owed to you by customers), Inventory (goods waiting to be sold), and Accounts Payable (money you owe suppliers). Other items include prepaid expenses, accrued liabilities, and deferred revenue.',
         formula: 'NWC = Current Assets - Current Liabilities\nOperating NWC = (AR + Inventory) - (AP + Accrued Liabilities)',
         visual: {
@@ -3271,7 +3271,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'NWC and Cash Flow',
-        icon: '💧',
+        icon: '○',
         text: 'Changes in NWC directly impact operating cash flow. An increase in NWC uses cash (you\'re tying up more money in operations). A decrease in NWC frees cash. This is why a fast-growing company can be profitable but cash-strapped — revenue growth drives AR and inventory higher, consuming cash.',
         visual: {
           title: 'NWC IMPACT ON CASH',
@@ -3289,7 +3289,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'NWC in Financial Models',
-        icon: '📊',
+        icon: '□',
         text: 'In DCF models, NWC is typically projected as a percentage of revenue. If NWC has historically been 10% of revenue, you project future NWC at ~10% and calculate the year-over-year change to include in Free Cash Flow. Some businesses have negative NWC (like subscription companies that collect cash before delivering services) — this means growth actually generates cash.',
         formula: 'Projected NWC = Revenue x NWC-as-%-of-Revenue\nChange in NWC = Current Year NWC - Prior Year NWC\nFCF impact: subtract change in NWC (increase = cash outflow)',
         tip: {
@@ -3302,7 +3302,7 @@ const LEARN_MODULES = [
   {
     id: 'revenue-recognition',
     title: 'Revenue Recognition & Accruals',
-    icon: '📋',
+    icon: '▣',
     desc: 'When does revenue count? Accrual vs cash accounting and the ASC 606 framework.',
     time: '15 min',
     sections: 3,
@@ -3310,7 +3310,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'Accrual vs. Cash Basis',
-        icon: '⚖️',
+        icon: '◎',
         text: 'Under cash accounting, you record revenue when cash arrives and expenses when cash leaves. Under accrual accounting (required by GAAP/IFRS for public companies), you record revenue when earned and expenses when incurred, regardless of cash timing. This means a company can report high revenue but have no cash if customers haven\'t paid yet.',
         visual: {
           title: 'CASH vs. ACCRUAL',
@@ -3325,7 +3325,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'ASC 606: Five-Step Model',
-        icon: '📝',
+        icon: '▹',
         text: 'ASC 606 (IFRS 15 internationally) provides a unified framework for when to recognize revenue. The five steps are: (1) Identify the contract, (2) Identify performance obligations, (3) Determine the transaction price, (4) Allocate the price to obligations, (5) Recognize revenue when/as obligations are satisfied.',
         visual: {
           title: 'ASC 606 FIVE STEPS',
@@ -3341,7 +3341,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Common Revenue Traps',
-        icon: '⚠️',
+        icon: '△',
         text: 'Deferred revenue (a liability) arises when a company collects cash before delivering goods/services — common in SaaS, subscriptions, and gift cards. Unbilled revenue (an asset) occurs when services have been performed but not yet invoiced. Understanding these timing differences is critical for analyzing cash flow quality.',
         visual: {
           title: 'TIMING DIFFERENCES',
@@ -3359,7 +3359,7 @@ const LEARN_MODULES = [
   {
     id: 'depreciation-noncash',
     title: 'Depreciation & Non-Cash Charges',
-    icon: '📉',
+    icon: '▿',
     desc: 'Why non-cash charges matter for valuation, taxes, and free cash flow.',
     time: '12 min',
     sections: 3,
@@ -3367,7 +3367,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'What Are Non-Cash Charges?',
-        icon: '💡',
+        icon: '○',
         text: 'Non-cash charges are expenses on the Income Statement that don\'t involve actual cash outflow. The most common are: Depreciation (allocating tangible asset cost over useful life), Amortization (same for intangible assets), Stock-Based Compensation (value of equity grants to employees), and Impairment/Write-Downs (reducing asset value to fair market value).',
         visual: {
           title: 'NON-CASH CHARGES THROUGH THE STATEMENTS',
@@ -3381,7 +3381,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Depreciation Methods',
-        icon: '📐',
+        icon: '□',
         text: 'Straight-line depreciation spreads the cost evenly: (Cost - Salvage Value) / Useful Life = annual expense. Accelerated methods (double-declining balance, MACRS for tax) front-load more expense in early years. Companies often use straight-line for book reporting and accelerated for tax returns, creating a Deferred Tax Liability.',
         formula: 'Straight-Line: Annual Dep = (Cost - Salvage) / Useful Life\nDouble-Declining: Annual Dep = 2 x (1/Life) x Book Value',
         visual: {
@@ -3397,7 +3397,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Impact on Valuation',
-        icon: '💰',
+        icon: '◇',
         text: 'D&A matters for valuation because EBITDA adds it back — making EBITDA a pre-depreciation measure of operating performance. In FCF calculations, D&A is added back (non-cash) but CapEx is subtracted (the actual cash spent on assets). The tax shield from depreciation (D&A x Tax Rate) increases cash flow without any real cash expense.',
         formula: 'Tax Shield = Depreciation x Tax Rate\nFCF = EBIT(1-T) + D&A - CapEx - Change in NWC\nNote: D&A add-back partially offset by CapEx subtraction',
         tip: {
@@ -3410,7 +3410,7 @@ const LEARN_MODULES = [
   {
     id: 'comps-analysis',
     title: 'Comparable Companies Analysis',
-    icon: '📊',
+    icon: '□',
     desc: 'How to select peers, spread comps, and derive a market-based valuation.',
     time: '20 min',
     sections: 4,
@@ -3418,7 +3418,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'What Are Comps?',
-        icon: '🎯',
+        icon: '◇',
         text: 'Comparable companies analysis (comps) values a company by looking at how similar publicly traded companies are valued. You calculate trading multiples (like EV/EBITDA or P/E) for a set of peer companies, then apply those multiples to the target\'s financials. It\'s a market-based, relative valuation — it tells you what the market is willing to pay for businesses like yours.',
         visual: {
           title: 'COMPS PROCESS',
@@ -3437,7 +3437,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Selecting the Peer Group',
-        icon: '🔍',
+        icon: '○',
         text: 'The peer group should include 5-10 companies that are truly comparable. Key criteria: same industry/sector, similar business model, comparable size (revenue, market cap), similar growth rates, overlapping geographies, and comparable margin profiles. A bad peer set ruins the entire analysis — this is where the "art" comes in.',
         visual: {
           title: 'GOOD vs. BAD PEER SELECTION',
@@ -3448,7 +3448,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Spreading Comps',
-        icon: '📋',
+        icon: '▣',
         text: '"Spreading comps" means building a table of key metrics for each peer: Enterprise Value, Equity Value, Revenue, EBITDA, EBIT, Net Income, and the resulting multiples (EV/Revenue, EV/EBITDA, P/E). Use forward (NTM) estimates from consensus, not trailing numbers. Calculate the mean and median of each multiple.',
         formula: 'Key Multiples:\nEV/Revenue = Enterprise Value / Revenue\nEV/EBITDA = Enterprise Value / EBITDA\nP/E = Share Price / Earnings Per Share',
         tip: {
@@ -3458,7 +3458,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Applying Comps to the Target',
-        icon: '🎯',
+        icon: '◇',
         text: 'Apply the median (or selected range of) multiples to the target\'s corresponding metric. For example: if median EV/EBITDA is 9.0x and the target\'s EBITDA is $200M, implied EV = $1.8B. Then bridge from EV to equity value. Always present a range, not a point estimate.',
         formula: 'Implied Enterprise Value = Median Multiple x Target Metric\nImplied Equity Value = Implied EV - Net Debt\nImplied Share Price = Implied Equity Value / Diluted Shares',
         trap: {
@@ -3471,7 +3471,7 @@ const LEARN_MODULES = [
   {
     id: 'precedent-transactions',
     title: 'Precedent Transactions',
-    icon: '🤝',
+    icon: '◈',
     desc: 'Valuing a company based on what buyers have paid for similar businesses.',
     time: '15 min',
     sections: 3,
@@ -3479,7 +3479,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'What Are Precedent Transactions?',
-        icon: '🎯',
+        icon: '◇',
         text: 'Precedent transactions analysis looks at prices paid in past M&A deals for comparable companies. Unlike comps (which use current trading multiples), precedents capture what buyers actually paid, including a control premium. This typically yields higher valuations than comps because acquirers pay above market price to gain control.',
         visual: {
           title: 'COMPS vs. PRECEDENTS',
@@ -3490,7 +3490,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Finding and Screening Deals',
-        icon: '🔍',
+        icon: '○',
         text: 'Search for relevant transactions using databases (Capital IQ, Bloomberg, Dealogic). Screen by: same industry, similar deal size, recent transactions (ideally within 3-5 years), and similar deal type (strategic vs. financial buyer). For each deal, calculate the implied multiples: EV/Revenue, EV/EBITDA at the transaction price.',
         formula: 'Implied Premium = (Offer Price - Unaffected Price) / Unaffected Price\nImplied EV/EBITDA = Transaction Enterprise Value / LTM EBITDA',
         tip: {
@@ -3500,7 +3500,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Interpreting Results',
-        icon: '📈',
+        icon: '△',
         text: 'Precedent transaction multiples are influenced by deal-specific factors: competitive bidding processes drive prices up, distressed sales drive them down, synergy expectations vary by buyer. Always contextualize each deal — a precedent from a low-rate environment may not apply in a high-rate one. Present a range and explain the key transactions.',
         trap: {
           title: 'Stale Deals',
@@ -3512,7 +3512,7 @@ const LEARN_MODULES = [
   {
     id: 'terminal-value-sensitivity',
     title: 'Terminal Value & Sensitivity',
-    icon: '♾️',
+    icon: '◉',
     desc: 'The two methods for terminal value and why sensitivity analysis is critical.',
     time: '15 min',
     sections: 3,
@@ -3520,7 +3520,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'Two Methods for Terminal Value',
-        icon: '🔀',
+        icon: '◇',
         text: 'Terminal Value captures a company\'s value beyond the explicit projection period (typically 5-10 years). Method 1: Gordon Growth Model — assumes FCFs grow at a constant rate forever. Method 2: Exit Multiple — applies a multiple (e.g., EV/EBITDA) to the final year\'s metric. Both should give roughly similar results; if they diverge significantly, revisit your assumptions.',
         visual: {
           title: 'GORDON GROWTH vs. EXIT MULTIPLE',
@@ -3531,7 +3531,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Why Terminal Value Dominates',
-        icon: '⚠️',
+        icon: '△',
         text: 'Terminal Value typically represents 60-80% of total Enterprise Value in a DCF. This means your valuation is highly sensitive to terminal assumptions — a small change in growth rate or exit multiple can swing the valuation by 20%+. This is both the power and weakness of DCF: most of the value comes from the least certain assumptions.',
         formula: 'If WACC = 10% and g = 3%:\nTV = $100M x 1.03 / (0.10 - 0.03) = $1,471M\n\nIf g changes to 2.5%:\nTV = $100M x 1.025 / (0.10 - 0.025) = $1,367M\n(7% drop in TV from just 0.5% change in g)',
         tip: {
@@ -3541,7 +3541,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Building a Sensitivity Table',
-        icon: '📊',
+        icon: '□',
         text: 'A sensitivity table (or data table) shows how implied valuation changes across a range of key assumptions. The classic DCF sensitivity table uses WACC on one axis and terminal growth rate (or exit multiple) on the other. This gives stakeholders a range of outcomes rather than a single point estimate.',
         formula: 'Typical ranges:\nWACC: base +/- 1-2% (e.g., 8% to 12%)\nTerminal Growth: 1.5% to 3.5%\nExit Multiple: base +/- 1-2x (e.g., 7x to 11x EBITDA)',
         trap: {
@@ -3554,7 +3554,7 @@ const LEARN_MODULES = [
   {
     id: 'debt-structures',
     title: 'Debt Structures & Covenants',
-    icon: '🏗️',
+    icon: '⬢',
     desc: 'The capital stack, debt instruments, and covenant mechanics in leveraged finance.',
     time: '20 min',
     sections: 4,
@@ -3562,7 +3562,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'The Capital Stack',
-        icon: '📊',
+        icon: '□',
         text: 'The capital stack ranks all sources of financing by seniority — who gets paid first in bankruptcy. Senior secured debt sits at the top (lowest risk, lowest return), followed by senior unsecured, subordinated/mezzanine, preferred equity, and common equity at the bottom (highest risk, highest return). In an LBO, the stack is typically 50-70% debt.',
         visual: {
           title: 'CAPITAL STACK (TOP = FIRST PAID)',
@@ -3578,7 +3578,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Types of Debt Instruments',
-        icon: '📝',
+        icon: '▹',
         text: 'Revolving Credit Facility (Revolver): a line of credit drawn as needed, like a corporate credit card — used for working capital. Term Loan A (TLA): amortizing bank loan with scheduled principal payments. Term Loan B (TLB): institutional loan with minimal amortization (1% annual) and a bullet payment at maturity — the workhorse of LBO financing. High-Yield Bonds: fixed-rate bonds sold to institutional investors, typically unsecured.',
         visual: {
           title: 'TERM LOAN A vs. TERM LOAN B',
@@ -3589,7 +3589,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Covenants and Terms',
-        icon: '⚖️',
+        icon: '◎',
         text: 'Covenants are contractual restrictions that protect lenders. Maintenance covenants require ongoing compliance (e.g., Debt/EBITDA must stay below 5.0x, tested quarterly). Incurrence covenants only apply when the borrower takes a specific action (e.g., can\'t take on more debt unless leverage stays below 6.0x). The trend toward "cov-lite" deals means fewer maintenance covenants.',
         visual: {
           title: 'MAINTENANCE vs. INCURRENCE',
@@ -3604,7 +3604,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'PIK and Other Features',
-        icon: '🔧',
+        icon: '·',
         text: 'PIK (Payment-In-Kind) interest: instead of cash interest, the borrower can pay by adding to the principal balance. This preserves cash flow but increases total debt. Other features: call protection (penalty for early repayment), make-whole provisions (compensate lender for lost interest), and OID (Original Issue Discount — bonds issued below par, increasing effective yield).',
         formula: 'PIK Example:\n$100M loan at 10% PIK for 5 years\nYear 1: Balance grows to $110M\nYear 5: Balance = $100M x (1.10)^5 = $161M\nNo cash interest paid, but debt grew by $61M',
         trap: {
@@ -3617,7 +3617,7 @@ const LEARN_MODULES = [
   {
     id: 'lbo-returns',
     title: 'LBO Returns Analysis',
-    icon: '📈',
+    icon: '▷',
     desc: 'IRR vs. MOIC, the three value creation levers, and paper LBO technique.',
     time: '15 min',
     sections: 3,
@@ -3625,7 +3625,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'IRR vs. MOIC',
-        icon: '📊',
+        icon: '□',
         text: 'IRR (Internal Rate of Return) is the annualized percentage return, accounting for time. MOIC (Multiple on Invested Capital) is total cash returned divided by total cash invested. A 3.0x MOIC means you tripled your money. The key difference: MOIC ignores time, IRR doesn\'t. PE firms target 20-25%+ IRR and 2.5-3.0x+ MOIC.',
         visual: {
           title: 'IRR vs. MOIC',
@@ -3637,7 +3637,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Three Value Creation Levers',
-        icon: '⚡',
+        icon: '›',
         text: 'PE firms create returns through three levers, each contributing roughly one-third: (1) Debt Paydown — using company cash flow to reduce debt, increasing equity value without any growth. (2) EBITDA Growth — growing earnings through revenue growth, margin expansion, or operational improvements. (3) Multiple Expansion — selling at a higher EV/EBITDA multiple than the purchase multiple.',
         visual: {
           title: 'VALUE CREATION BRIDGE',
@@ -3653,7 +3653,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Paper LBO Walkthrough',
-        icon: '📝',
+        icon: '▹',
         text: 'In interviews, you may get a "paper LBO" — a simplified LBO done by hand in 5-10 minutes. Framework: (1) Purchase price = EBITDA x entry multiple. (2) Debt vs equity split using leverage ratio. (3) Project EBITDA growth over hold period. (4) Estimate cumulative debt paydown from free cash flow. (5) Exit equity = Exit EV minus remaining debt. (6) Compute MOIC and IRR.',
         formula: 'Quick Paper LBO:\nEntry: $200M EBITDA x 10x = $2B EV\nDebt: 60% x $2B = $1.2B | Equity: $800M\nEBITDA grows 8%/yr to $294M at Year 5\nDebt paydown: ~$50M/yr, $950M remaining\nExit: $294M x 10x = $2.94B - $950M = $1.99B equity\nMOIC = $1.99B / $800M = 2.5x\nIRR approx = (2.5)^(1/5) - 1 = ~20%',
         tip: {
@@ -3666,7 +3666,7 @@ const LEARN_MODULES = [
   {
     id: 'ma-process',
     title: 'M&A Process & Deal Structures',
-    icon: '🏛️',
+    icon: '□',
     desc: 'How sell-side and buy-side M&A deals work from start to close.',
     time: '25 min',
     sections: 4,
@@ -3674,7 +3674,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'Buy-Side vs. Sell-Side',
-        icon: '⚖️',
+        icon: '◎',
         text: 'In sell-side M&A, the bank represents the company being sold. The bank runs a competitive auction process to maximize price. In buy-side M&A, the bank advises the acquirer on finding targets, valuation, deal structuring, and negotiation. Most IB analysts work on sell-side mandates, which generate higher fees.',
         visual: {
           title: 'SELL-SIDE vs. BUY-SIDE',
@@ -3685,7 +3685,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'The Sell-Side Process',
-        icon: '📋',
+        icon: '▣',
         text: 'A sell-side M&A process typically runs 4-6 months through these phases: (1) Engage the bank and sign NDA. (2) Prepare the CIM and financial model. (3) Contact potential buyers. (4) Receive Indications of Interest (IOIs). (5) Select shortlisted bidders for management presentations. (6) Open data room for due diligence. (7) Receive final bids (LOIs). (8) Negotiate definitive agreement. (9) Sign and close.',
         visual: {
           title: 'SELL-SIDE TIMELINE',
@@ -3701,7 +3701,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Key M&A Documents',
-        icon: '📄',
+        icon: '▹',
         text: 'NDA (Non-Disclosure Agreement): signed before any information is shared. Teaser: a 1-2 page anonymous summary to gauge interest. CIM (Confidential Information Memorandum): the 50-100 page pitch book covering business overview, financials, and growth strategy. IOI (Indication of Interest): non-binding first bid with price range. LOI (Letter of Intent): more detailed, semi-binding bid with key terms. Definitive Agreement: the final, legally binding purchase agreement.',
         tip: {
           title: 'Analyst Work',
@@ -3710,7 +3710,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Deal Structure Considerations',
-        icon: '🔧',
+        icon: '·',
         text: 'Key structural decisions include: Cash vs. Stock consideration — cash is clean but requires financing; stock avoids cash outlay but dilutes existing shareholders. Asset Purchase vs. Stock Purchase — asset deals let buyers cherry-pick assets and step up the tax basis; stock deals are simpler but assume all liabilities. Earnouts — deferred payments contingent on future performance, bridging valuation gaps.',
         visual: {
           title: 'BUYER vs. SELLER PREFERENCES',
@@ -3724,7 +3724,7 @@ const LEARN_MODULES = [
   {
     id: 'merger-consequences',
     title: 'Merger Consequences Analysis',
-    icon: '🔬',
+    icon: '○',
     desc: 'Synergies, goodwill, purchase accounting, and integration risks.',
     time: '15 min',
     sections: 3,
@@ -3732,7 +3732,7 @@ const LEARN_MODULES = [
     content: [
       {
         title: 'Synergies in Detail',
-        icon: '🤝',
+        icon: '◎',
         text: 'Synergies are the additional value created by combining two companies. Cost synergies (easier to achieve) come from eliminating redundancies: duplicate HQ, overlapping salesforces, combined purchasing power. Revenue synergies (harder, less certain) come from cross-selling, new market access, or combined product offerings. Synergies justify paying a premium — without them, the acquirer is overpaying.',
         visual: {
           title: 'COST vs. REVENUE SYNERGIES',
@@ -3744,7 +3744,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Goodwill & Purchase Accounting',
-        icon: '📊',
+        icon: '□',
         text: 'When a company is acquired, the buyer must allocate the purchase price to the target\'s assets at Fair Market Value (FMV). Any excess over the FMV of net identifiable assets becomes Goodwill — an intangible asset on the balance sheet. Goodwill is not amortized but is tested annually for impairment. If the acquisition underperforms, goodwill is written down.',
         formula: 'Goodwill = Purchase Price - FMV of Net Identifiable Assets\n\nExample: Pay $1B for company with $300M net assets at FMV\nGoodwill = $1B - $300M = $700M',
         trap: {
@@ -3754,7 +3754,7 @@ const LEARN_MODULES = [
       },
       {
         title: 'Integration Risks',
-        icon: '⚠️',
+        icon: '△',
         text: 'Post-merger integration is the #1 reason acquisitions fail. Key risks include: cultural clash (different management styles), customer attrition (especially relationship-driven sales), key employee departure, IT system integration (costly and time-consuming), and synergy shortfalls. Studies show 50-70% of acquisitions destroy shareholder value.',
         tip: {
           title: 'Interview Application',
@@ -3840,7 +3840,7 @@ function openLearnModule(moduleId) {
     });
     if (incomplete.length > 0) {
       const names = incomplete.map(pid => LEARN_MODULES.find(m => m.id === pid)?.title).filter(Boolean).join(', ');
-      showToast('Tip: Consider completing "' + names + '" first.', '💡', 5000);
+      showToast('Tip: Consider completing "' + names + '" first.', '○', 5000);
     }
   }
 
@@ -4155,7 +4155,7 @@ function startCase(caseId) {
           <input type="number" class="case-input" id="case-${inp.id}" step="0.01" placeholder="?">
           <span class="case-unit">${inp.unit}</span>
         </div>
-        <div class="case-hint" id="hint-${inp.id}" style="display:none">💡 ${inp.hint}</div>
+        <div class="case-hint" id="hint-${inp.id}" style="display:none">${inp.hint}</div>
       `).join('')}
       
       <div class="case-actions">
