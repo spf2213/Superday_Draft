@@ -12,6 +12,7 @@
 </head>
 <body>
 <div class="grid-bg"></div>
+<div id="toast-container" class="toast-container"></div>
 
 <!-- ══════════════════════════════════════
      AUTH SCREEN
@@ -926,6 +927,40 @@
                 <div style="font-size:10.5px;color:var(--t-3);margin-top:4px;font-family:'Geist Mono',monospace" id="count-deal">0 answered</div>
               </div>
             </div>
+          </div>
+
+          <!-- Learning Path Suggestion -->
+          <div id="learning-path-container"></div>
+
+          <!-- Technical Breakdown Analytics -->
+          <div class="dash-panel" id="analytics-panel" style="display:none">
+            <div class="dp-header">
+              <span class="dp-title">Technical Breakdown</span>
+              <span class="dp-action" onclick="showView('learn')">Study concepts →</span>
+            </div>
+            <div id="subcategory-stats"></div>
+            <div id="weak-area-callout"></div>
+          </div>
+
+          <!-- Daily Goal -->
+          <div class="dash-panel" id="daily-goal-panel">
+            <div class="dp-header">
+              <span class="dp-title">Daily Goal</span>
+              <span class="dp-action" id="daily-goal-label">0/5 today</span>
+            </div>
+            <div class="daily-goal-wrap">
+              <div class="daily-goal-bar"><div class="daily-goal-fill" id="daily-goal-fill" style="width:0%"></div></div>
+              <div class="daily-goal-text" id="daily-goal-text">Answer 5 questions to hit your daily goal.</div>
+            </div>
+          </div>
+
+          <!-- Achievements -->
+          <div class="dash-panel" id="badges-panel" style="display:none">
+            <div class="dp-header">
+              <span class="dp-title">Achievements</span>
+              <span class="dp-action" id="badge-count">0/14</span>
+            </div>
+            <div class="badge-grid" id="badge-grid"></div>
           </div>
 
           <div class="dash-panel">
