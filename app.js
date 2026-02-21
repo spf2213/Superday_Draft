@@ -457,7 +457,7 @@ function pvMockSend() {
     if (typ) typ.remove();
     const r = PV_MOCK_REPLIES[pvMockRound % PV_MOCK_REPLIES.length];
     pvMockRound++;
-    const sc = (n) => `<span style="color:${n>=8?'var(--green)':'#e0a820'};font-weight:600">${n}/10</span>`;
+    const sc = (n) => `<span style="color:${n>=8?'var(--green)':'var(--amber)'};font-weight:600">${n}/10</span>`;
     const scores = `<div style="display:flex;gap:10px;margin-top:5px;font-size:10px;color:var(--t-3)">Technical ${sc(r.t)} · Structure ${sc(r.s)} · Confidence ${sc(r.c)}</div>`;
     chat.innerHTML += `
       <div style="display:flex;gap:7px;align-items:flex-start">

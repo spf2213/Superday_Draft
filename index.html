@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -88,7 +88,7 @@
       <div class="nav-link" onclick="setNavActive(this);navScrollTo('section-pricing')">Pricing</div>
       <div class="nav-link" onclick="setNavActive(this);navScrollTo('section-faq')">FAQ</div>
       <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
-        <span id="theme-icon">☀</span>
+        <span id="theme-icon">☽</span>
       </button>
     </div>
     <div class="nav-right">
@@ -154,7 +154,7 @@
             <div class="pm-stats" style="flex-shrink:0">
               <div class="pm-stat">
                 <div class="pm-stat-label">Answered</div>
-                <div class="pm-stat-val" style="color:var(--accent)">14</div>
+                <div class="pm-stat-val" style="color:var(--t)">14</div>
                 <div class="pm-stat-sub">of 250 questions</div>
                 <div class="pm-stat-bar"><div class="pm-stat-fill" style="width:22%"></div></div>
               </div>
@@ -184,7 +184,7 @@
                 <span style="font-size:10px;color:var(--accent)">→</span>
               </div>
               <div class="pm-qitem" style="cursor:pointer;transition:var(--trans)" onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background=''">
-                <span class="pm-qpill" style="background:rgba(240,180,40,0.12);color:#e0a820">Behavioral</span>
+                <span class="pm-qpill" style="background:var(--amber-dim);color:var(--amber)">Behavioral</span>
                 <span class="pm-qtxt">Why investment banking? Why this firm?</span>
                 <span style="font-size:10px;color:var(--accent)">→</span>
               </div>
@@ -238,7 +238,7 @@
               </div>
               <div class="pm-qitem pv-q-item" data-cat="beh" style="flex-direction:column;align-items:stretch;cursor:pointer" onclick="pvToggleQ(this)">
                 <div style="display:flex;align-items:center;gap:8px">
-                  <span class="pm-qpill" style="background:rgba(240,180,40,0.12);color:#e0a820;font-size:9px;padding:2px 7px;border-radius:4px;font-family:'Geist Mono',monospace;font-weight:500;white-space:nowrap">Behavioral</span>
+                  <span class="pm-qpill" style="background:var(--amber-dim);color:var(--amber);font-size:9px;padding:2px 7px;border-radius:4px;font-family:'Geist Mono',monospace;font-weight:500;white-space:nowrap">Behavioral</span>
                   <span class="pm-qtxt">Why investment banking? Why this firm specifically?</span>
                   <span class="pv-caret" style="font-size:10px;color:var(--t-3);flex-shrink:0;transition:transform 0.2s">⌄</span>
                 </div>
@@ -287,7 +287,7 @@
             <!-- Nav -->
             <div style="flex-shrink:0;display:flex;gap:6px;margin-top:10px;justify-content:center">
               <button onclick="pvFCNav(-1)" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);border-radius:5px;padding:5px 12px;font-size:11px;color:var(--t-2);cursor:pointer;transition:var(--trans)" onmouseover="this.style.background='rgba(255,255,255,0.11)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">← Prev</button>
-              <button onclick="pvFlipCard()" style="background:var(--accent);border:none;border-radius:5px;padding:5px 14px;font-size:11px;color:white;cursor:pointer">Flip</button>
+              <button onclick="pvFlipCard()" style="background:var(--t);border:none;border-radius:5px;padding:5px 14px;font-size:11px;color:var(--t-inv);cursor:pointer">Flip</button>
               <button onclick="pvFCNav(1)"  style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);border-radius:5px;padding:5px 12px;font-size:11px;color:var(--t-2);cursor:pointer;transition:var(--trans)" onmouseover="this.style.background='rgba(255,255,255,0.11)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">Next →</button>
             </div>
           </div>
@@ -317,7 +317,7 @@
               <input id="pv-mock-input" type="text" placeholder="Type your answer and hit Enter…" onkeydown="if(event.key==='Enter')pvMockSend()"
                 style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--t);outline:none;min-width:0"
                 onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.09)'"/>
-              <button onclick="pvMockSend()" style="flex-shrink:0;background:var(--accent);border:none;border-radius:6px;padding:6px 12px;font-size:11px;color:white;cursor:pointer;white-space:nowrap;font-weight:500">Send →</button>
+              <button onclick="pvMockSend()" style="flex-shrink:0;background:var(--t);border:none;border-radius:6px;padding:6px 12px;font-size:11px;color:var(--t-inv);cursor:pointer;white-space:nowrap;font-weight:500">Send →</button>
             </div>
           </div>
 
@@ -587,7 +587,7 @@
               style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:var(--r);padding:8px 12px;font-size:13px;color:var(--t);outline:none;transition:var(--trans)"
               onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.09)'"
               onkeydown="if(event.key==='Enter')demoChatSend()"/>
-            <button onclick="demoChatSend()" style="background:var(--accent);border:none;border-radius:var(--r);padding:8px 14px;font-size:13px;color:white;cursor:pointer;transition:var(--trans);white-space:nowrap" onmouseover="this.style.background='var(--accent-h)'" onmouseout="this.style.background='var(--accent)'">Send →</button>
+            <button onclick="demoChatSend()" style="background:var(--t);border:none;border-radius:var(--r);padding:8px 14px;font-size:13px;color:var(--t-inv);cursor:pointer;transition:var(--trans);white-space:nowrap" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Send →</button>
           </div>
         </div>
       </div>
